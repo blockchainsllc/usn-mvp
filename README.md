@@ -5,12 +5,12 @@ We work to enable new sharing experiences and provide you with a glimpse of how 
 
 Because the app is still in the alpha stage, some things might still be puzzling or seem unpolished. We would love to get your feedback on your experiences. Reach us via slack, email or just create an issue here on our Github.
 
-## The Universal Sharing Network
+## Universal Sharing Network
 In the rise of mobile and tablet controlled objects like smart houses and drones, it sounds sensible to create a platform in which people can profit from the shared access to those assets.
 
-USN stands for Universal Sharing Network, a mechanism that represents IoT devices as physical assets, with a set of smart contracts. The Slock app brings this potential to the public, allowing users to rent anything that can be locked or controlled via mobile phones.
+The USN is a mechanism that represents IoT devices as physical assets, with a set of smart contracts. The Slock app onboard it and brings this potential to the public, allowing users to rent or share anything that can be locked or controlled via mobile phones.
 
-It is also public - anyone can add assets and extend its functionalities. Jump into the [Github repository](https://github.com/Trusted-IoT-Alliance/usn) for more detailed information. 
+It is universal as it is public - anyone can share assets and extend its functionalities. Jump into the [Github repository](https://github.com/Trusted-IoT-Alliance/usn) for more detailed information. 
 
 ## Slock Pi
 Decentralization is one of most fundamental changes that internet technologies are facing at the moment. It minimizes the impact of cyber attacks and engages the users in making important decisions as a democratic principle.
