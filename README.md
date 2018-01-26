@@ -3,7 +3,7 @@ Welcome to our program, it is a pleasure to see you here.
 
 We work to enable new sharing experiences and provide you with a glimpse of how blockchain technology can power new ideas.
 
-As an alpha stage product, the app can feel a little puzzling and unpolished, in this case, please send us feedback in slack, email or by creating a Github issue.
+Because the app is still in the alpha stage, some things might still be puzzling or seem unpolished. We would love to get your feedback about your experiences. Reach us via slack, email or just create an issue here on our Github.
 
 ## The Universal Sharing Network
 In the rise of mobile and tablet controlled objects like smart houses and drones, it sounds sensible to create a platform in which people can profit from the shared access to those assets.
