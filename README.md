@@ -8,16 +8,16 @@ Because the app is still in the alpha stage, some things might still be puzzling
 ## Slock.it - the Smart Sharing Network
 In the rise of mobile and tablet controlled objects like smart houses and drones, it sounds sensible to create a smart platform in which people can profit from the shared access to those assets. That is Slock.it
 
-The Slock.it mechanism represents IoT devices as physical assets, with a set of smart contracts. The Slock.App onboards this mechanism and brings its potential to the public. It allows providers and users to rent or share anything that can be locked or controlled via mobile phones.
+The Slock.it mechanism represents IoT devices as physical assets, with a set of smart contracts. The Slock.it App onboards this mechanism and brings its potential to the public. It allows providers and users to rent or share anything that can be locked or controlled via mobile phones.
 
 Slock.it is universal as it is public - anyone can share assets and extend its functionalities. Jump into the [Github repository](https://github.com/Trusted-IoT-Alliance/usn) for more detailed information. 
 
-## Slock.Pi
+## Slock.it Pi
 Decentralization is one of most fundamental changes that internet technologies are facing at the moment. It minimizes the impact of cyber attacks and engages the users in making important decisions as a democratic principle.
 
-By mixing the comfort of home automation platforms, the low cost of the raspberry pi and, the decentralization of blockchain, the Slock.Pi delivers a cutting-edge bridge to the IoT.
+By mixing the comfort of home automation platforms, the low cost of the raspberry pi and, the decentralization of blockchain, the Slock.it Pi delivers a cutting-edge bridge to the IoT.
 
-Get some hands-on by following our [Slock.Pi guide](https://github.com/slockit/usn-mvp/wiki).
+Get some hands-on by following our [Slock.it Pi guide](https://github.com/slockit/usn-mvp/wiki).
 
 ## [Learn more](https://github.com/slockit/usn-mvp/wiki)
 The wiki exists to guide you through the concepts of our technology, how to use it and what to do in unexpected situations.
