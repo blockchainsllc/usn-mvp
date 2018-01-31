@@ -1,6 +1,23 @@
-* `class` [Owned](#class-owned)    
 * `interface` [EIP165](#interface-eip165)    
+* `class` [Owned](#class-owned)    
+* `interface` [Fees](#interface-fees)    
 * `interface` [ERC20](#interface-erc20)    
+## `interface` EIP165
+
+
+See [interfaces/EIP165.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/interfaces/EIP165.sol)
+
+```javascript
+[{"constant":true,"inputs":[{"name":"_interfaceID","type":"bytes4"}],"name":"supportsInterface","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"}]
+```
+
+* **constructor** ()
+
+* function **supportsInterface** (`bytes4 _interfaceID`)     
+    constant returns (`bool`)    
+    checks, if the contract supports a certain feature by implementing the interface
+    * _interfaceID : the hash or identifier of the interface 
+
 ## `class` Owned
 
 
@@ -20,21 +37,24 @@ See [interfaces/Owned.sol](https://github.com/slockit/usn-lib/blob/develop/contr
 * function **owner** ()     
     constant returns (`address`) 
 
-## `interface` EIP165
+## `interface` Fees
 
 
-See [interfaces/EIP165.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/interfaces/EIP165.sol)
+See [interfaces/Fees.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/interfaces/Fees.sol)
 
 ```javascript
-[{"constant":true,"inputs":[{"name":"_interfaceID","type":"bytes4"}],"name":"supportsInterface","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"}]
+[{"constant":false,"inputs":[{"name":"price","type":"uint128"},{"name":"token","type":"address"},{"name":"registry","type":"address"},{"name":"user","type":"address"},{"name":"id","type":"bytes32"},{"name":"time","type":"uint64"}],"name":"getAndUpdateFee","outputs":[{"name":"amount","type":"uint128"},{"name":"receiver","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"ID","outputs":[{"name":"","type":"bytes4"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"price","type":"uint128"},{"name":"token","type":"address"},{"name":"registry","type":"address"},{"name":"user","type":"address"},{"name":"id","type":"bytes32"},{"name":"time","type":"uint64"}],"name":"getFee","outputs":[{"name":"amount","type":"uint128"},{"name":"receiver","type":"address"}],"payable":false,"stateMutability":"view","type":"function"}]
 ```
 
 * **constructor** ()
 
-* function **supportsInterface** (`bytes4 _interfaceID`)     
-    constant returns (`bool`)    
-    checks, if the contract supports a certain feature by implementing the interface
-    * _interfaceID : the hash or identifier of the interface 
+* function **ID** ()     
+    constant returns (`bytes4`)    
+    interface-id for supportInterface-check value= 0x9bd12cb7 
+* function **getAndUpdateFee** (`uint128 price`, `address token`, `address registry`, `address user`, `bytes32 id`, `uint64 time`)     
+     returns (`uint128 amount`, `address receiver`) 
+* function **getFee** (`uint128 price`, `address token`, `address registry`, `address user`, `bytes32 id`, `uint64 time`)     
+    constant returns (`uint128 amount`, `address receiver`) 
 
 ## `interface` ERC20
 

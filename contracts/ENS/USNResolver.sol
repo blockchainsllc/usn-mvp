@@ -15,7 +15,7 @@ contract USNResolver is Owned {
 
   /// a whitelist of runtime-code-hashes for verified contracts
   /// all contracts in types are whitelisted
-  mapping(bytes32 => bool)    public whitelist;  // holding the sha56-hash of all allowed registry contracts
+  mapping(bytes32 => bool)  public whitelist;  // holding the sha56-hash of all allowed registry contracts
 
   /// mapping of the nodeid to the contract address
   mapping(bytes32 => address) public objects; 
@@ -26,11 +26,17 @@ contract USNResolver is Owned {
   /// public libraries-mapping
   mapping(bytes4 => address) public lib;
 
+  /// public config-mapping
+  mapping(bytes4 => string) public config;
+
   /// triggered whenever a new contract-code is added to the whitelist
   event LogWhiteListUpdated(bytes32 _type, bool _allowed);
 
   /// triggered whenever a library was updated
   event LogLibUpdated(bytes4 _type, address newAddress);
+
+  /// triggered whenever a config was updated
+  event LogConfigUpdated(bytes4 _type, string val);
 
   /// triggered when a new Object-contract has been added
   event LogAddedObject(bytes32 _nodeID);
@@ -69,10 +75,11 @@ contract USNResolver is Owned {
   /// @param _subnode the hash of the name registered
   /// @param newContract the address of the contract
   function setAddress(bytes32 _subnode,  USNResolvable newContract) public {
-    bytes32 node = keccak256(rootNode, _subnode);
-    require (isWhitelisted(newContract) && ens.owner(node) == msg.sender && newContract.ens() == ens && newContract.rootNode() == rootNode);
-    objects[node] = newContract;
-    AddrChanged(node,newContract);
+      bytes32 node = keccak256(rootNode, _subnode);
+      require (isWhitelisted(newContract) && ens.owner(node) == msg.sender && newContract.ens() == ens && newContract.rootNode() == rootNode
+          && newContract.subNode() == _subnode);
+      objects[node] = newContract;
+      AddrChanged(node,newContract);
   }
 
   /// sets or changes a address for a contract, which is not deployed in the same chain.
@@ -80,23 +87,30 @@ contract USNResolver is Owned {
   /// @param _newAddress the address of the contract
   /// @param _chainIPFS the IPFS-Hash of the chain-defintion
   function setAddressInChain(bytes32 _subnode, address _newAddress, bytes32 _chainIPFS) public onlyOwner {
-    bytes32 node = keccak256(rootNode, _subnode);
-    objects[node] = _newAddress;
-    chain[node] = _chainIPFS;
-    AddrChanged(node,_newAddress);
+      bytes32 node = keccak256(rootNode, _subnode);
+      objects[node] = _newAddress;
+      chain[node] = _chainIPFS;
+      AddrChanged(node,_newAddress);
   }
 
   /// returns true, if the code of the given address would be whitelisted
   /// @param _address the address of the deployed contract
   function isWhitelisted(address _address) public constant returns (bool) {
-    return whitelist[keccak256(getCodeAt(_address))];
+      return whitelist[keccak256(getCodeAt(_address))];
   }
 
   
   /// resolves the address for the given nodeid
   /// @param _nodeID the hash of of the rootNode+ hash of the name
   function addr(bytes32 _nodeID)  public constant returns (address) {
-    return _nodeID == rootNode ? address(this) : objects[_nodeID];
+      return _nodeID == rootNode ? address(this) : objects[_nodeID];
+  }
+
+  /// resolves the address and the chain for the given nodeid
+  /// this function is simply used to reduce the number of calls, because in order to resolve a nodeId, you always need to get both values (address and chain)
+  /// @param _nodeID the hash of of the rootNode+ hash of the name
+  function addrAndChain(bytes32 _nodeID)  public constant returns (address contractAddress, bytes32 chainId) {
+    return (_nodeID == rootNode ? address(this) : objects[_nodeID], chain[_nodeID]);
   }
 
   /// sets a library-contract
@@ -105,6 +119,14 @@ contract USNResolver is Owned {
   function setLib(bytes4 _id, address _lib) public onlyOwner {
     lib[_id] = _lib;
     LogLibUpdated(_id, _lib);
+  }
+
+  /// sets a config-entry
+  /// @param _id the hash or id of the entry
+  /// @param _val the value
+  function setConfig(bytes4 _id, string _val) public onlyOwner {
+    config[_id] = _val;
+    LogConfigUpdated(_id, _val);
   }
 
   /// returns true if the given interface is supported

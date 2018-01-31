@@ -6,6 +6,6 @@ import "../features/OffChainSupport.sol";
 contract MultisigSupport {
 
     /// interface-id for supportInterface-check
-    bytes4 public constant ID = 0x7a26de3a;
+    bytes4 internal constant ID = 0x7a26de3a;
 
 }

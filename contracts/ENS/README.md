@@ -1,3 +1,4 @@
+* `class` [USNResolvable](#class-usnresolvable)    
 * `interface` [AbstractENS](#interface-abstractens)    
 * `class` [ENSImpl](#class-ensimpl)    
 * `class` [ENSOwner](#class-ensowner)    
@@ -6,10 +7,30 @@
 * `class` [USNRegistrar](#class-usnregistrar)    
     this contract may be used to register new names for the usn-domain.    
     
-* `class` [USNResolvable](#class-usnresolvable)    
 * `class` [USNResolver](#class-usnresolver)    
     the main regstry for all contracts based on the USN-Names    
     
+## `class` USNResolvable
+
+
+See [ENS/USNResolvable.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/ENS/USNResolvable.sol)
+
+```javascript
+[{"constant":true,"inputs":[],"name":"ens","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"subNode","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"rootNode","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"}]
+```
+
+* **constructor** ()
+
+* function **ens** ()     
+    constant returns (`address`)    
+    the ENS-address 
+* function **rootNode** ()     
+    constant returns (`bytes32`)    
+    the rootNode pointing to the hash of `usn.eth` 
+* function **subNode** ()     
+    constant returns (`bytes32`)    
+    the nodeId 
+
 ## `interface` AbstractENS
 
 
@@ -105,24 +126,6 @@ See [ENS/USNRegistrar.sol](https://github.com/slockit/usn-lib/blob/develop/contr
 * function **updateRegistrar** (`address _newRegistrar`)     
      
 
-## `class` USNResolvable
-
-
-See [ENS/USNResolvable.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/ENS/USNResolvable.sol)
-
-```javascript
-[{"constant":true,"inputs":[],"name":"ens","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"rootNode","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"}]
-```
-
-* **constructor** ()
-
-* function **ens** ()     
-    constant returns (`address`)    
-    the ENS-address 
-* function **rootNode** ()     
-    constant returns (`bytes32`)    
-    the rootNode pointing to the hash of `usn.eth` 
-
 ## `class` USNResolver
 
 > is [Owned](https://github.com/slockit/usn-lib/blob/develop/contracts/interfaces/README.md#class-owned)    
@@ -131,7 +134,7 @@ the main regstry for all contracts based on the USN-Names
 See [ENS/USNResolver.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/ENS/USNResolver.sol)
 
 ```javascript
-[{"constant":true,"inputs":[{"name":"_interfaceID","type":"bytes4"}],"name":"supportsInterface","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"pure","type":"function"},{"constant":true,"inputs":[{"name":"_addr","type":"address"}],"name":"getCodeAt","outputs":[{"name":"o_code","type":"bytes"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_address","type":"address"}],"name":"isWhitelisted","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_nodeID","type":"bytes32"}],"name":"addr","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"ens","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_codeHash","type":"bytes32"},{"name":"_allow","type":"bool"}],"name":"setWhitelistedCode","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_subnode","type":"bytes32"},{"name":"_newAddress","type":"address"},{"name":"_chainIPFS","type":"bytes32"}],"name":"setAddressInChain","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"chain","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_id","type":"bytes4"},{"name":"_lib","type":"address"}],"name":"setLib","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_address","type":"address"},{"name":"_allow","type":"bool"}],"name":"setWhitelisted","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_newOwner","type":"address"}],"name":"changeOwner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"whitelist","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"objects","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_subnode","type":"bytes32"},{"name":"newContract","type":"address"}],"name":"setAddress","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes4"}],"name":"lib","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"rootNode","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_ens","type":"address"},{"name":"_rootNode","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":false,"stateMutability":"nonpayable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_type","type":"bytes32"},{"indexed":false,"name":"_allowed","type":"bool"}],"name":"LogWhiteListUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_type","type":"bytes4"},{"indexed":false,"name":"newAddress","type":"address"}],"name":"LogLibUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_nodeID","type":"bytes32"}],"name":"LogAddedObject","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_nodeID","type":"bytes32"}],"name":"LogRemovedObject","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"node","type":"bytes32"},{"indexed":false,"name":"a","type":"address"}],"name":"AddrChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_newOwner","type":"address"}],"name":"LogChangeOwner","type":"event"}]
+[{"constant":true,"inputs":[{"name":"_interfaceID","type":"bytes4"}],"name":"supportsInterface","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"pure","type":"function"},{"constant":true,"inputs":[{"name":"_nodeID","type":"bytes32"}],"name":"addrAndChain","outputs":[{"name":"contractAddress","type":"address"},{"name":"chainId","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_addr","type":"address"}],"name":"getCodeAt","outputs":[{"name":"o_code","type":"bytes"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_address","type":"address"}],"name":"isWhitelisted","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_nodeID","type":"bytes32"}],"name":"addr","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"ens","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_codeHash","type":"bytes32"},{"name":"_allow","type":"bool"}],"name":"setWhitelistedCode","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_subnode","type":"bytes32"},{"name":"_newAddress","type":"address"},{"name":"_chainIPFS","type":"bytes32"}],"name":"setAddressInChain","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"chain","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_id","type":"bytes4"},{"name":"_lib","type":"address"}],"name":"setLib","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_address","type":"address"},{"name":"_allow","type":"bool"}],"name":"setWhitelisted","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_newOwner","type":"address"}],"name":"changeOwner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"whitelist","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"objects","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_subnode","type":"bytes32"},{"name":"newContract","type":"address"}],"name":"setAddress","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes4"}],"name":"config","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_id","type":"bytes4"},{"name":"_val","type":"string"}],"name":"setConfig","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes4"}],"name":"lib","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"rootNode","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_ens","type":"address"},{"name":"_rootNode","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":false,"stateMutability":"nonpayable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_type","type":"bytes32"},{"indexed":false,"name":"_allowed","type":"bool"}],"name":"LogWhiteListUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_type","type":"bytes4"},{"indexed":false,"name":"newAddress","type":"address"}],"name":"LogLibUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_type","type":"bytes4"},{"indexed":false,"name":"val","type":"string"}],"name":"LogConfigUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_nodeID","type":"bytes32"}],"name":"LogAddedObject","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_nodeID","type":"bytes32"}],"name":"LogRemovedObject","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"node","type":"bytes32"},{"indexed":false,"name":"a","type":"address"}],"name":"AddrChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_newOwner","type":"address"}],"name":"LogChangeOwner","type":"event"}]
 ```
 
 * **constructor** (`address _ens`, `bytes32 _rootNode`)
@@ -139,6 +142,8 @@ See [ENS/USNResolver.sol](https://github.com/slockit/usn-lib/blob/develop/contra
     triggered whenever a new contract-code is added to the whitelist
 * event **LogLibUpdated** (`bytes4 _type`, `address newAddress`)     
     triggered whenever a library was updated
+* event **LogConfigUpdated** (`bytes4 _type`, `string val`)     
+    triggered whenever a config was updated
 * event **LogAddedObject** (`bytes32 _nodeID`)     
     triggered when a new Object-contract has been added
 * event **LogRemovedObject** (`bytes32 _nodeID`)     
@@ -150,9 +155,16 @@ See [ENS/USNResolver.sol](https://github.com/slockit/usn-lib/blob/develop/contra
     constant returns (`address`)    
     resolves the address for the given nodeid
     * _nodeID : the hash of of the rootNode+ hash of the name 
+* function **addrAndChain** (`bytes32 _nodeID`)     
+    constant returns (`address contractAddress`, `bytes32 chainId`)    
+    resolves the address and the chain for the given nodeid this function is simply used to reduce the number of calls, because in order to resolve a nodeId, you always need to get both values (address and chain)
+    * _nodeID : the hash of of the rootNode+ hash of the name 
 * function **chain** (`bytes32`)     
     constant returns (`bytes32`)    
     mapping of the nodeid to a IPFS-Hash, which describes the chain this contract is deployed. 
+* function **config** (`bytes4`)     
+    constant returns (`string`)    
+    public config-mapping 
 * function **ens** ()     
     constant returns (`address`)    
     the ENS-address 
@@ -183,6 +195,11 @@ See [ENS/USNResolver.sol](https://github.com/slockit/usn-lib/blob/develop/contra
     * _chainIPFS : the IPFS-Hash of the chain-defintion
     * _newAddress : the address of the contract
     * _subnode : the hash of the name registered 
+* function **setConfig** (`bytes4 _id`, `string _val`)     
+        
+    sets a config-entry
+    * _id : the hash or id of the entry
+    * _val : the value 
 * function **setLib** (`bytes4 _id`, `address _lib`)     
         
     sets a library-contract

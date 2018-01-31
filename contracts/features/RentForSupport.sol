@@ -1,10 +1,11 @@
 pragma solidity ^0.4.16;
+import "../helpers/USNLib.sol"; 
 
 /// @title renting from a different account then the controller
 contract RentForSupport {
 
     /// interface-id for supportInterface-check
-    bytes4 public constant ID = 0xbf89d2ac;
+    bytes4 internal constant ID = 0xbf89d2ac;
 
     /// rents a device, which means it will change the state by setting the sender as controller.
     /// @param id the deviceid
@@ -34,4 +35,6 @@ contract RentForSupport {
     /// @param start the timestamp when the booking should start
     /// @param secondsToRent the duration to book
     function canBeRented(bytes32 id, address user,uint64 start, uint32 secondsToRent) public view returns (bool);
+
+   
 }
