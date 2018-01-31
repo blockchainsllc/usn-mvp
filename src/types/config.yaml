@@ -24,19 +24,19 @@ definitions:
                 additionalProperties: false
                 properties: 
                     profiles: 
-                        description: a simple map holding public profiles for addresses [ProfileRegistry.sol](https://github.com/slockit/usn-lib/tree/develop/contracts/profiles)
+                        description: a simple map holding public profiles for addresses [ProfileRegistry.sol](https://github.com/slockit/usn-mvp/tree/develop/contracts/profiles)
                         type: string
                         format: address
                     registry:
-                        description: the [USN-Resolver](https://github.com/slockit/usn-lib/blob/develop/contracts/ENS/USNResolver.sol)
+                        description: the [USN-Resolver](https://github.com/slockit/usn-mvp/blob/develop/contracts/ENS/USNResolver.sol)
                         type: string
                         format: address
                     usnRegistrar:
-                        description: the [USN-Registrar](https://github.com/slockit/usn-lib/blob/develop/contracts/ENS/USNRegistrar.sol), used to register new ENS-Domains 
+                        description: the [USN-Registrar](https://github.com/slockit/usn-mvp/blob/develop/contracts/ENS/USNRegistrar.sol), used to register new ENS-Domains 
                         type: string
                         format: address
                     stateManager:
-                        description: the [StatechannelManager](https://github.com/slockit/usn-lib/tree/develop/contracts/states)
+                        description: the [StatechannelManager](https://github.com/slockit/usn-mvp/tree/develop/contracts/states)
                         type: string
                         format: address
             services:

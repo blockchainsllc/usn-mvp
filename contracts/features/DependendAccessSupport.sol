@@ -1,10 +1,11 @@
 pragma solidity ^0.4.16;
 
 /// @title supports acces control for depending devices.
+/// @author slock.ot 
 contract DependendAccessSupport {
 
     /// interface-id for supportInterface-check
-    bytes4 public constant ID = 0x83b8c330;
+    bytes4 internal constant ID = 0x83b8c330;
 
     /// sets a list of contracts and deviceIds, which will also have access, if the user books this device.
     /// @param id the device id

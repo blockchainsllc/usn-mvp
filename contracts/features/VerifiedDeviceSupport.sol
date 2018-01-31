@@ -5,13 +5,16 @@ import "../features/OwnerSupport.sol";
 /// @title supports for signing messages by the device.
 contract VerifiedDeviceSupport {
      /// interface-id for supportInterface-check
-     bytes4 public constant ID = 0xa3951baf;
+     bytes4 internal constant ID = 0xa3951baf;
 
-     /// returns the public address of the 
-     function devicePubKey(bytes32 id) public constant returns (bytes32);
+     /// returns the public address of the device
+     /// @param id deviceid
+     function devicePubKey(bytes32 id) external constant returns (bytes32);
 
-     /// sets the public address of the 
-     function setDevicePubKey(bytes32 id, bytes32 _address) public;
+     /// sets the public address of the device
+     /// @param id deviceid
+     /// @param _address address
+     function setDevicePubKey(bytes32 id, bytes32 _address) external;
 
 }
 
@@ -22,14 +25,14 @@ contract VerifiedDeviceSupportPerDeviceImpl is VerifiedDeviceSupport, OwnerSuppo
     /// the address
     mapping(bytes32 =>bytes32) deviceVerificationAddress;
 
-    function devicePubKey(bytes32 _id) public constant returns (bytes32) {
+    function devicePubKey(bytes32 _id) external constant returns (bytes32) {
         return deviceVerificationAddress[_id];
-   }
+    }
 
     /// set the device address
     /// @param _id device id
     /// @param _address address
-    function setDevicePubKey(bytes32 _id, bytes32 _address) public{
+    function setDevicePubKey(bytes32 _id, bytes32 _address) external{
         require(deviceOwner(_id)==msg.sender);
         deviceVerificationAddress[_id] = _address;
     }
@@ -41,14 +44,14 @@ contract VerifiedDeviceSupportPerContractImpl is OwnerSupport,VerifiedDeviceSupp
     bytes32 public deviceVerificationAddress;
 
     /// returns the public address of the 
-    function devicePubKey(bytes32 /*id*/) public constant returns (bytes32) {
+    function devicePubKey(bytes32 /*id*/) external constant returns (bytes32) {
         return deviceVerificationAddress;
     }
 
     /// set the device address
     /// @param _id device id
     /// @param _address address
-    function setDevicePubKey(bytes32 _id, bytes32 _address) public{
+    function setDevicePubKey(bytes32 _id, bytes32 _address) external {
         require (deviceOwner(_id)==msg.sender) ;
         deviceVerificationAddress = _address;
     }

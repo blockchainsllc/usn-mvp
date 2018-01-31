@@ -4,7 +4,7 @@ pragma solidity ^0.4.16;
 contract OwnerSupport {
  
     /// interface-id for supportInterface-check
-    bytes4 public constant ID = 0xb4762fab;
+    bytes4 internal constant ID = 0xb4762fab;
 
     /// the owner of the device
     /// @param id the deviceid
