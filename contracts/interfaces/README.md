@@ -5,7 +5,7 @@
 ## `interface` EIP165
 
 
-See [interfaces/EIP165.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/interfaces/EIP165.sol)
+See [interfaces/EIP165.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/interfaces/EIP165.sol)
 
 ```javascript
 [{"constant":true,"inputs":[{"name":"_interfaceID","type":"bytes4"}],"name":"supportsInterface","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -21,7 +21,7 @@ See [interfaces/EIP165.sol](https://github.com/slockit/usn-lib/blob/develop/cont
 ## `class` Owned
 
 
-See [interfaces/Owned.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/interfaces/Owned.sol)
+See [interfaces/Owned.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/interfaces/Owned.sol)
 
 ```javascript
 [{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_newOwner","type":"address"}],"name":"changeOwner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_newOwner","type":"address"}],"name":"LogChangeOwner","type":"event"}]
@@ -40,7 +40,7 @@ See [interfaces/Owned.sol](https://github.com/slockit/usn-lib/blob/develop/contr
 ## `interface` Fees
 
 
-See [interfaces/Fees.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/interfaces/Fees.sol)
+See [interfaces/Fees.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/interfaces/Fees.sol)
 
 ```javascript
 [{"constant":false,"inputs":[{"name":"price","type":"uint128"},{"name":"token","type":"address"},{"name":"registry","type":"address"},{"name":"user","type":"address"},{"name":"id","type":"bytes32"},{"name":"time","type":"uint64"}],"name":"getAndUpdateFee","outputs":[{"name":"amount","type":"uint128"},{"name":"receiver","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"ID","outputs":[{"name":"","type":"bytes4"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"price","type":"uint128"},{"name":"token","type":"address"},{"name":"registry","type":"address"},{"name":"user","type":"address"},{"name":"id","type":"bytes32"},{"name":"time","type":"uint64"}],"name":"getFee","outputs":[{"name":"amount","type":"uint128"},{"name":"receiver","type":"address"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -59,7 +59,7 @@ See [interfaces/Fees.sol](https://github.com/slockit/usn-lib/blob/develop/contra
 ## `interface` ERC20
 
 
-See [interfaces/ERC20.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/interfaces/ERC20.sol)
+See [interfaces/ERC20.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/interfaces/ERC20.sol)
 
 ```javascript
 [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"_success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"_totalSupply","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"_success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"_balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"_success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],"name":"allowance","outputs":[{"name":"_remaining","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_owner","type":"address"},{"indexed":true,"name":"_spender","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Approval","type":"event"}]

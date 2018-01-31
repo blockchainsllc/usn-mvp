@@ -68,7 +68,7 @@
 ## `interface` OwnerSupport
 
 defines a owner for a device
-See [features/OwnerSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/OwnerSupport.sol)
+See [features/OwnerSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/OwnerSupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[{"name":"id","type":"bytes32"}],"name":"deviceOwner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -84,7 +84,7 @@ See [features/OwnerSupport.sol](https://github.com/slockit/usn-lib/blob/develop/
 ## `interface` MetaSupport
 
 returns metadata for a device
-See [features/MetaSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/MetaSupport.sol)
+See [features/MetaSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/MetaSupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[{"name":"id","type":"bytes32"}],"name":"meta","outputs":[{"name":"","type":"bytes"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"}],"name":"properties","outputs":[{"name":"props","type":"uint128"},{"name":"extra","type":"uint64"},{"name":"subnode","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"fixFilter","type":"bytes32"},{"indexed":true,"name":"id","type":"bytes32"},{"indexed":false,"name":"endId","type":"bytes32"}],"name":"LogDeviceChanged","type":"event"}]
@@ -100,13 +100,13 @@ See [features/MetaSupport.sol](https://github.com/slockit/usn-lib/blob/develop/c
     * id : the deviceid 
 * function **properties** (`bytes32 id`)     
     constant returns (`uint128 props`, `uint64 extra`, `bytes32 subnode`)    
-    the properties or behavior defined per device, which is a bitmask with well defined values. (See https://github.com/slockit/usn-lib/wiki/Types#deviceproperties)
+    the properties or behavior defined per device, which is a bitmask with well defined values. (See https://github.com/slockit/usn-mvp/wiki/Types#deviceproperties)
     * id : the deviceid 
 
 ## `interface` RentingSupport
 
 defines a contract able to rent and return
-See [features/RentingSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/RentingSupport.sol)
+See [features/RentingSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/RentingSupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[{"name":"id","type":"bytes32"},{"name":"index","type":"uint256"}],"name":"getState","outputs":[{"name":"controller","type":"address"},{"name":"rentedFrom","type":"uint64"},{"name":"rentedUntil","type":"uint64"},{"name":"properties","type":"uint128"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"}],"name":"getStateCount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"bytes32"},{"name":"secondsToRent","type":"uint32"},{"name":"token","type":"address"}],"name":"rent","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"},{"name":"user","type":"address"}],"name":"getRentingState","outputs":[{"name":"rentable","type":"bool"},{"name":"free","type":"bool"},{"name":"open","type":"bool"},{"name":"controller","type":"address"},{"name":"rentedUntil","type":"uint64"},{"name":"rentedFrom","type":"uint64"},{"name":"props","type":"uint128"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"bytes32"}],"name":"returnObject","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"}],"name":"supportedTokens","outputs":[{"name":"addresses","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"},{"name":"token","type":"address"}],"name":"tokenReceiver","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"},{"name":"user","type":"address"},{"name":"secondsToRent","type":"uint32"},{"name":"token","type":"address"}],"name":"price","outputs":[{"name":"","type":"uint128"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"fixFilter","type":"bytes32"},{"indexed":true,"name":"id","type":"bytes32"},{"indexed":false,"name":"controller","type":"address"},{"indexed":false,"name":"rentedFrom","type":"uint64"},{"indexed":false,"name":"rentedUntil","type":"uint64"},{"indexed":false,"name":"noReturn","type":"bool"},{"indexed":false,"name":"amount","type":"uint128"},{"indexed":false,"name":"token","type":"address"},{"indexed":false,"name":"properties","type":"uint128"}],"name":"LogRented","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"fixFilter","type":"bytes32"},{"indexed":true,"name":"id","type":"bytes32"},{"indexed":false,"name":"controller","type":"address"},{"indexed":false,"name":"rentedFrom","type":"uint64"},{"indexed":false,"name":"rentedUntil","type":"uint64"},{"indexed":false,"name":"paidBack","type":"uint128"}],"name":"LogReturned","type":"event"}]
@@ -162,7 +162,7 @@ See [features/RentingSupport.sol](https://github.com/slockit/usn-lib/blob/develo
 ## `interface` AccessSupport
 
 control the access for a device.
-See [features/AccessSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/AccessSupport.sol)
+See [features/AccessSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/AccessSupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[{"name":"id","type":"bytes32"},{"name":"user","type":"address"},{"name":"action","type":"bytes4"}],"name":"canAccess","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -180,7 +180,7 @@ See [features/AccessSupport.sol](https://github.com/slockit/usn-lib/blob/develop
 ## `interface` RemoteFeatureSupport
 
 support controlling acces for only identifieable users, which can be based on keybase or other whitleists
-See [features/RemoteFeatureSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/RemoteFeatureSupport.sol)
+See [features/RemoteFeatureSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/RemoteFeatureSupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[],"name":"featureCount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"features","outputs":[{"name":"feature","type":"address"},{"name":"iface","type":"uint64"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_addr","type":"address"},{"name":"_interface","type":"uint64"}],"name":"setRemoteFeature","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_addr","type":"address"}],"name":"removeRemoteFeature","outputs":[{"name":"found","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"}]
@@ -200,7 +200,7 @@ See [features/RemoteFeatureSupport.sol](https://github.com/slockit/usn-lib/blob/
 ## `interface` TimeRangeSupport
 
 supports checks for a minimum and maximum time to rent
-See [features/TimeRangeSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/TimeRangeSupport.sol)
+See [features/TimeRangeSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/TimeRangeSupport.sol)
 
 ```javascript
 [{"constant":false,"inputs":[{"name":"id","type":"bytes32"},{"name":"min","type":"uint32"},{"name":"max","type":"uint32"}],"name":"setRangeSeconds","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"}],"name":"getRangeSeconds","outputs":[{"name":"min","type":"uint32"},{"name":"max","type":"uint32"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -222,7 +222,7 @@ See [features/TimeRangeSupport.sol](https://github.com/slockit/usn-lib/blob/deve
 ## `interface` OffChainSupport
 
 defines Rules, which can be verified, even if the state is held on chain.
-See [features/OffChainSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/OffChainSupport.sol)
+See [features/OffChainSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/OffChainSupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[{"name":"id","type":"bytes32"},{"name":"secondsToRent","type":"uint32"},{"name":"amount","type":"uint128"},{"name":"token","type":"address"},{"name":"user","type":"address"},{"name":"tokenReceiver","type":"bytes32"},{"name":"controllerBefore","type":"address"},{"name":"rentedUntilBefore","type":"uint64"},{"name":"depositBefore","type":"uint128"}],"name":"rentIf","outputs":[{"name":"error","type":"uint16"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"},{"name":"user","type":"address"},{"name":"action","type":"bytes4"},{"name":"controller","type":"address"},{"name":"rentedUntil","type":"uint64"},{"name":"properties","type":"uint128"}],"name":"canAccessIf","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -255,7 +255,7 @@ See [features/OffChainSupport.sol](https://github.com/slockit/usn-lib/blob/devel
 ## `interface` RentForSupport
 
 renting from a different account then the controller
-See [features/RentForSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/RentForSupport.sol)
+See [features/RentForSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/RentForSupport.sol)
 
 ```javascript
 [{"constant":false,"inputs":[{"name":"id","type":"bytes32"},{"name":"start","type":"uint256"}],"name":"removeBooking","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"bytes32"},{"name":"secondsToRent","type":"uint32"},{"name":"token","type":"address"},{"name":"controller","type":"address"},{"name":"rentedFrom","type":"uint64"}],"name":"rentFor","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"bytes32"},{"name":"secondsToRent","type":"uint32"},{"name":"token","type":"address"},{"name":"controller","type":"address"}],"name":"rentForNow","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"},{"name":"user","type":"address"},{"name":"start","type":"uint64"},{"name":"secondsToRent","type":"uint32"}],"name":"canBeRented","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -294,7 +294,7 @@ See [features/RentForSupport.sol](https://github.com/slockit/usn-lib/blob/develo
 ## `interface` DepositSupport
 
 supports saving a deposit and returning it afterwards
-See [features/DepositSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/DepositSupport.sol)
+See [features/DepositSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/DepositSupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[{"name":"id","type":"bytes32"},{"name":"user","type":"address"},{"name":"secondsToRent","type":"uint32"},{"name":"token","type":"address"}],"name":"deposit","outputs":[{"name":"","type":"uint128"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"user","type":"address"},{"name":"id","type":"bytes32"}],"name":"storedDeposit","outputs":[{"name":"amount","type":"uint128"},{"name":"token","type":"address"},{"name":"access","type":"uint64"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"id","type":"bytes32"}],"name":"returnDeposit","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"user","type":"address"},{"indexed":true,"name":"id","type":"bytes32"},{"indexed":false,"name":"amount","type":"uint128"},{"indexed":false,"name":"token","type":"address"},{"indexed":false,"name":"access","type":"uint64"}],"name":"LogDepositStored","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"user","type":"address"},{"indexed":true,"name":"id","type":"bytes32"},{"indexed":false,"name":"amount","type":"uint128"},{"indexed":false,"name":"token","type":"address"}],"name":"LogDepositReturned","type":"event"}]
@@ -327,7 +327,7 @@ See [features/DepositSupport.sol](https://github.com/slockit/usn-lib/blob/develo
 ## `interface` BlackListSupport
 
 defines a blacklist for users to be rejected
-See [features/BlackListSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/BlackListSupport.sol)
+See [features/BlackListSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/BlackListSupport.sol)
 
 ```javascript
 [{"constant":false,"inputs":[{"name":"id","type":"bytes32"},{"name":"user","type":"address"},{"name":"forbidden","type":"bool"}],"name":"setBlacklisted","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"},{"name":"user","type":"address"}],"name":"isBlacklisted","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -350,7 +350,7 @@ See [features/BlackListSupport.sol](https://github.com/slockit/usn-lib/blob/deve
 ## `interface` DependendAccessSupport
 
 supports acces control for depending devices.
-See [features/DependendAccessSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/DependendAccessSupport.sol)
+See [features/DependendAccessSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/DependendAccessSupport.sol)
 
 ```javascript
 [{"constant":false,"inputs":[{"name":"id","type":"bytes32"},{"name":"contracts","type":"address[]"},{"name":"ids","type":"bytes32[]"}],"name":"setDependingService","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"}],"name":"getDependingService","outputs":[{"name":"contracts","type":"address[]"},{"name":"ids","type":"bytes32[]"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -372,7 +372,7 @@ See [features/DependendAccessSupport.sol](https://github.com/slockit/usn-lib/blo
 ## `interface` DiscountSupport
 
 support controlling acces for only identifieable users, which can be based on keybase or other whitleists
-See [features/DiscountSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/DiscountSupport.sol)
+See [features/DiscountSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/DiscountSupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[{"name":"id","type":"bytes32"},{"name":"user","type":"address"},{"name":"secondsToRent","type":"uint32"},{"name":"token","type":"address"},{"name":"standardPrice","type":"uint128"}],"name":"discount","outputs":[{"name":"","type":"uint128"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"ruleId","type":"uint64"},{"name":"discountType","type":"uint8"},{"name":"limit","type":"uint128"},{"name":"_discount","type":"uint128"}],"name":"setDiscountRule","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]
@@ -398,7 +398,7 @@ See [features/DiscountSupport.sol](https://github.com/slockit/usn-lib/blob/devel
 ## `interface` GroupedSupport
 
 
-See [features/GroupedSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/GroupedSupport.sol)
+See [features/GroupedSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/GroupedSupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[{"name":"id","type":"bytes32"}],"name":"nextID","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"group","type":"bytes32"}],"name":"getCount","outputs":[{"name":"","type":"uint64"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -418,7 +418,7 @@ See [features/GroupedSupport.sol](https://github.com/slockit/usn-lib/blob/develo
 ## `interface` IdentitySupport
 
 support controlling acces for only identifieable users, which can be based on keybase or other whitleists
-See [features/IdentitySupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/IdentitySupport.sol)
+See [features/IdentitySupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/IdentitySupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[{"name":"user","type":"address"}],"name":"isIdentified","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -434,7 +434,7 @@ See [features/IdentitySupport.sol](https://github.com/slockit/usn-lib/blob/devel
 ## `class` MultisigSupport
 
 support mutlisigs as controller of a device. In this case all keyholders have access when rented.
-See [features/MultisigSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/MultisigSupport.sol)
+See [features/MultisigSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/MultisigSupport.sol)
 
 ```javascript
 []
@@ -446,7 +446,7 @@ See [features/MultisigSupport.sol](https://github.com/slockit/usn-lib/blob/devel
 ## `interface` RemoteFeatureProvider
 
 interface for a remote feature-contract
-See [features/RemoteFeatureSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/RemoteFeatureSupport.sol)
+See [features/RemoteFeatureSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/RemoteFeatureSupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[{"name":"registry","type":"address"},{"name":"id","type":"bytes32"},{"name":"user","type":"address"},{"name":"rentedFrom","type":"uint64"},{"name":"secondsToRent","type":"uint32"},{"name":"token","type":"address"},{"name":"srcPrice","type":"uint128"}],"name":"price","outputs":[{"name":"","type":"uint128"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"registry","type":"address"},{"name":"_id","type":"bytes32"},{"name":"_user","type":"address"},{"name":"action","type":"bytes4"},{"name":"_controller","type":"address"},{"name":"_rentedUntil","type":"uint64"},{"name":"subnode","type":"bytes32"}],"name":"canAccessIf","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"registry","type":"address"},{"name":"_id","type":"bytes32"},{"name":"_secondsToRent","type":"uint32"},{"name":"_token","type":"address"},{"name":"_controller","type":"address"},{"name":"_rentedFrom","type":"uint64"},{"name":"props","type":"uint128"},{"name":"nodeID","type":"bytes32"}],"name":"canRentFor","outputs":[{"name":"rentable","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -464,7 +464,7 @@ See [features/RemoteFeatureSupport.sol](https://github.com/slockit/usn-lib/blob/
 ## `interface` StateChannelSupport
 
 support  StateChannels
-See [features/StateChannelSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/StateChannelSupport.sol)
+See [features/StateChannelSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/StateChannelSupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[{"name":"id","type":"bytes32"}],"name":"supportStateChannels","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"stateChannelMgr","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -483,7 +483,7 @@ See [features/StateChannelSupport.sol](https://github.com/slockit/usn-lib/blob/d
 ## `interface` TokenSupport
 
 supports exchanges between different tokens
-See [features/TokenSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/TokenSupport.sol)
+See [features/TokenSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/TokenSupport.sol)
 
 ```javascript
 [{"constant":false,"inputs":[{"name":"id","type":"bytes32"},{"name":"token","type":"address"},{"name":"newTarget","type":"address"}],"name":"setTokenReceiver","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"bytes32"},{"name":"addresses","type":"address[]"}],"name":"setSupportedTokens","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]
@@ -506,7 +506,7 @@ See [features/TokenSupport.sol](https://github.com/slockit/usn-lib/blob/develop/
 ## `interface` VerifiedDeviceSupport
 
 supports for signing messages by the device.
-See [features/VerifiedDeviceSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/VerifiedDeviceSupport.sol)
+See [features/VerifiedDeviceSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/VerifiedDeviceSupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[{"name":"id","type":"bytes32"}],"name":"devicePubKey","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"bytes32"},{"name":"_address","type":"bytes32"}],"name":"setDevicePubKey","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]
@@ -526,10 +526,10 @@ See [features/VerifiedDeviceSupport.sol](https://github.com/slockit/usn-lib/blob
 
 ## `interface` VerifiedDeviceSupportPerContractImpl
 
-> is [OwnerSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-ownersupport), [VerifiedDeviceSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-verifieddevicesupport)    
+> is [OwnerSupport](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/README.md#interface-ownersupport), [VerifiedDeviceSupport](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/README.md#interface-verifieddevicesupport)    
 
 the Implementation for a whitelist for all devices in this contract.
-See [features/VerifiedDeviceSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/VerifiedDeviceSupport.sol)
+See [features/VerifiedDeviceSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/VerifiedDeviceSupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[],"name":"deviceVerificationAddress","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"devicePubKey","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_id","type":"bytes32"},{"name":"_address","type":"bytes32"}],"name":"setDevicePubKey","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"}],"name":"deviceOwner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -543,10 +543,10 @@ See [features/VerifiedDeviceSupport.sol](https://github.com/slockit/usn-lib/blob
 
 ## `interface` VerifiedDeviceSupportPerDeviceImpl
 
-> is [VerifiedDeviceSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-verifieddevicesupport), [OwnerSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-ownersupport)    
+> is [VerifiedDeviceSupport](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/README.md#interface-verifieddevicesupport), [OwnerSupport](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/README.md#interface-ownersupport)    
 
 supports for signing messages by the device with one signature per device.
-See [features/VerifiedDeviceSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/VerifiedDeviceSupport.sol)
+See [features/VerifiedDeviceSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/VerifiedDeviceSupport.sol)
 
 ```javascript
 [{"constant":true,"inputs":[{"name":"_id","type":"bytes32"}],"name":"devicePubKey","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_id","type":"bytes32"},{"name":"_address","type":"bytes32"}],"name":"setDevicePubKey","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"}],"name":"deviceOwner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -558,7 +558,7 @@ See [features/VerifiedDeviceSupport.sol](https://github.com/slockit/usn-lib/blob
 ## `interface` WeekCalendarSupport
 
 supports controlling acces by setting opening times per weekday
-See [features/WeekCalendarSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/WeekCalendarSupport.sol)
+See [features/WeekCalendarSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/WeekCalendarSupport.sol)
 
 ```javascript
 [{"constant":false,"inputs":[{"name":"id","type":"bytes32"},{"name":"_blockedTimes","type":"uint256"}],"name":"setBlockedTimes","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"},{"name":"time","type":"uint64"}],"name":"isBlocked","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"id","type":"bytes32"}],"name":"blockedTimes","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]
@@ -584,7 +584,7 @@ See [features/WeekCalendarSupport.sol](https://github.com/slockit/usn-lib/blob/d
 ## `interface` WhitelistSupport
 
 Defines additional access for certain users, (like the cleaning lady in an appartment)
-See [features/WhitelistSupport.sol](https://github.com/slockit/usn-lib/blob/develop/contracts/features/WhitelistSupport.sol)
+See [features/WhitelistSupport.sol](https://github.com/slockit/usn-mvp/blob/develop/contracts/features/WhitelistSupport.sol)
 
 ```javascript
 [{"constant":false,"inputs":[{"name":"id","type":"bytes32"},{"name":"user","type":"address"},{"name":"hasAccess","type":"bool"}],"name":"setAccessWhitelist","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"id","type":"bytes32"},{"indexed":true,"name":"controller","type":"address"},{"indexed":false,"name":"permission","type":"bool"}],"name":"LogAccessChanged","type":"event"}]

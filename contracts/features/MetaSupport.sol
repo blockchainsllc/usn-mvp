@@ -48,7 +48,7 @@ contract MetaSupport {
     /// @return meta-data
     function meta(bytes32 id) external constant returns (bytes);
 
-    /// the properties or behavior defined per device, which is a bitmask with well defined values. (See https://github.com/slockit/usn-lib/wiki/Types#deviceproperties)
+    /// the properties or behavior defined per device, which is a bitmask with well defined values. (See https://github.com/slockit/usn-mvp/wiki/Types#deviceproperties)
     /// @param id the deviceid
     /// @return properties and extras of a device
     function properties(bytes32 id) external constant returns (uint128 props, uint64 extra, bytes32 subnode);

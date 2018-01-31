@@ -2615,7 +2615,7 @@ export class MetaSupport {
   }
 
   /**
-   * the properties or behavior defined per device, which is a bitmask with well defined values. (See https://github.com/slockit/usn-lib/wiki/Types#deviceproperties)
+   * the properties or behavior defined per device, which is a bitmask with well defined values. (See https://github.com/slockit/usn-mvp/wiki/Types#deviceproperties)
    *
    * This is a readonly constant function.
    *

@@ -66,10 +66,10 @@ const uSNConfig:types.USNConfig = {
     *  **clients** `string[]` - the urls of the available clients. Each url must be either a http(s), ws-url or a ipc-path   
 *  **contracts** `object` - a list of base-contracts   
     properties: 
-    *  **profiles** `string<address>` - a simple map holding public profiles for addresses [ProfileRegistry.sol](https://github.com/slockit/usn-lib/tree/develop/contracts/profiles)   
-    *  **registry** `string<address>` - the [USN-Resolver](https://github.com/slockit/usn-lib/blob/develop/contracts/ENS/USNResolver.sol)   
-    *  **usnRegistrar** `string<address>` - the [USN-Registrar](https://github.com/slockit/usn-lib/blob/develop/contracts/ENS/USNRegistrar.sol), used to register new ENS-Domains   
-    *  **stateManager** `string<address>` - the [StatechannelManager](https://github.com/slockit/usn-lib/tree/develop/contracts/states)   
+    *  **profiles** `string<address>` - a simple map holding public profiles for addresses [ProfileRegistry.sol](https://github.com/slockit/usn-mvp/tree/develop/contracts/profiles)   
+    *  **registry** `string<address>` - the [USN-Resolver](https://github.com/slockit/usn-mvp/blob/develop/contracts/ENS/USNResolver.sol)   
+    *  **usnRegistrar** `string<address>` - the [USN-Registrar](https://github.com/slockit/usn-mvp/blob/develop/contracts/ENS/USNRegistrar.sol), used to register new ENS-Domains   
+    *  **stateManager** `string<address>` - the [StatechannelManager](https://github.com/slockit/usn-mvp/tree/develop/contracts/states)   
 *  **services** `object` - the Services of the USN   
     properties: 
     *  **stateServer** `string<uri>` - url of the statechannel manager   
