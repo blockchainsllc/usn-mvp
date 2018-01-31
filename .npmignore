@@ -1,0 +1,10 @@
+.gitignore
+**/.git/
+/build/config.gypi
+npm-debug.log
+**/.npmrc
+.*.swp
+.DS_Store
+._*
+*.orig
+package-lock.json

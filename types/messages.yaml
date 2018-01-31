@@ -1,0 +1,269 @@
+$schema: http://json-schema.org/schema#
+description: messages use to communicate with a device.
+definitions: 
+
+# Signature
+    Signature: 
+        type: object
+        description: |
+            Verified ECDSA Signature.
+            Signatures are a pair (r, s). Where r is computed as the X coordinate of a point R, modulo the curve order n.
+            For more visit [ECDSA Q&A]{@link https://bitcoin.stackexchange.com/questions/38351/ecdsa-v-r-s-what-is-v}
+        properties:
+            message:
+                type: string
+                description: the message
+            messageHash:
+                type: string
+                description: hash of the message
+                format: bytes32
+            r: 
+                type: string
+                description: Positive non-zero Integer signature.r
+                format: hex
+            s: 
+                type: string
+                description: Positive non-zero Integer signature.s
+                format: hex
+            v: 
+                type: string
+                description: Calculated curve point, or identity element O.
+                format: hex
+            signature:
+                type: string
+                description: the concated signature of r+s+v
+                format: hex
+        required: [ messageHash, r, s, v]
+
+# StateMessage
+    StateMessage: 
+        description: Message demanding DEVICE RENTAL STATE change.
+        type: object
+        required: [ url, rentedUntil, msgType ]    
+        additionalProperties: false
+        properties:
+            url:
+                description: the device identifier
+                type: string
+                format: usnUrl
+                example: bike@myCompany
+            rentedUntil:
+                type: integer
+                description: | 
+                             Limit date of rental. After this date the stateMgr must set the device free for rent. 
+                             The value is a unix-timestamp in seconds since 1970.
+                timestamp : renting
+            rentedFrom:
+                type: integer
+                description: | 
+                             start of the rental, if not provided the default will be the current timestamp.
+                             The value is a unix-timestamp in seconds since 1970.
+                timestamp : renting
+            controller:
+                type: string
+                description: address of the contract controller
+                format: address
+            verification:
+                description: Message verification-data
+                type: object
+                properties:
+                    paymentType: 
+                        type: string
+                        description: Name of the module that handles the verification
+                        enum:
+                            - fiat
+                            - eth
+                            - btc
+                            - stateChannel
+                    data:
+                        type: object
+                        description: Additional data object required for verification, depending on the paymentType
+                        additionalProperties: 
+                           type : [object, number, string, boolean ]
+                required: [ paymentType]
+            msgType:
+                enum:
+                    - rent
+                    - return
+                type: string
+                description: Message source. Demand specific action. 
+            handled:
+                type: boolean
+                description:  States that this message was handled by stateMgr.
+            verified:
+                type: boolean
+                description: States that this message was verified by a verifier module.
+
+# ActionMessage
+    ActionMessage: 
+        description: Message demanding DEVICE PHYSICAL STATE change.
+        type: object
+        additionalProperties: false
+        required: [ url, msgType, timestamp, action, signature ]    
+        properties:
+            msgId:
+                descripton: a unique id to identifiy the message
+                type: number
+            msgType:
+                enum:
+                    - action
+                type: string
+                description: marks the message as action message
+            url:
+                description: the human readable url of the device
+                type: string
+                format: usnUrl
+                example: bike@myCompany
+            timestamp:
+                type: integer
+                description: Unix format timestamp (in seconds) of the message. Used to avoid using same message twice.
+                timestamp: current
+            action:
+                type: string
+                description: Abstract physical action. I.E. open, lock, detonate.
+            metadata:
+                type: object
+                description: Object containing data that the physical device expects to trigger change of state.
+            signature:
+                $ref: "#/definitions/Signature"
+            handled:
+                type: boolean
+                description:  States that this message was handled by stateMgr.
+            verified:
+                type: boolean
+                description: States that this message was verified by a verifier module.
+
+    ErrorResponse:
+        description: Message send back in case of an error
+        type: object
+        required: [ url, error, timestamp, msgType ]   
+        properties:
+            msgId:
+                description: a unique id to identifiy the message
+                type: number
+            msgType:
+                description: fixed type
+                type: string
+                enum: 
+                    - error
+            url:
+                description: the human readable url of the device
+                type: string
+                format: usnUrl
+                example: bike@myCompany
+            timestamp:
+                description: the timestamp when this state was read from the device. this is a unix-timestamp in seconds.
+                type: integer
+                timestamp: current
+            error:
+                description: the error-message
+                type: string
+            errkey:
+                description: the key used to translate the message
+                type: string
+            args:
+                description: the arguments
+                type: array
+                items:
+                    type: string
+            signature:
+                description: the signature of the device itself in order to prove that these data are correct.
+                $ref: "#/definitions/Signature"
+    
+    ReadStateMessageResponse:
+        description: Message from the device with its current state, signed by the device in order to prove its authenticity
+        type: object
+        required: [ url, rentedUntil, timestamp, msgType ]   
+        properties:
+            msgId:
+                description: a unique id to identifiy the message
+                type: number
+            msgType:
+                description: fixed type
+                type: string
+                enum: 
+                    - readResponse
+            url:
+                description: the human readable url of the device
+                type: string
+                format: usnUrl
+                example: bike@myCompany
+            timestamp:
+                description: the timestamp when this state was read from the device. this is a unix-timestamp in seconds.
+                type: integer
+                timestamp: current
+            states:
+                type: array
+                items:
+                    type: object
+                    properties:
+                        controller:
+                            description: the controller or null if not rented
+                            type: string
+                            format: address
+                        rentedUntil:
+                            description: the timestamp until the current device is rented. this is a unix-timestamp in seconds.
+                            type: integer
+                            timestamp: renting
+                        rentedFrom:
+                            description: the starting timestamp of the booking. this is a unix-timestamp in seconds.
+                            type: integer
+                            timestamp: renting
+            physicalState:
+                description: the internal description of the device.
+                type: object
+                properties:
+                    internalId:
+                        description: internal id, which is mapped to the deviceId
+                        type: string
+                    state:
+                        description: current state of the device.
+                        type: string
+                    domain:
+                        description: domain or services offered by the device.
+                        type: object
+                        properties:
+                            name:
+                                description: internal name
+                                type: string
+                            services:
+                                type: array
+                                description: services offered by the device
+                                items:
+                                    type: string
+
+
+                    lastUpdated:
+                        description: timestamp
+                        type: number
+                minProperties: 3
+            signature:
+                description: the signature of the device itself in order to prove that these data are correct.
+                $ref: "#/definitions/Signature"
+        minProperties: 7
+
+    ReadStateMessageRequest:
+        description: Requests a read message from the device. The signature is optional and it is used to authenticate the requestor of the information, in order to return more details.
+        type: object
+        required: [ url, msgType, timestamp ]
+        properties:
+            msgId:
+                descripton: a unique id to identifiy the message
+                type: number
+            msgType:
+                enum:
+                    - read
+                type: string
+                description: marks the message as read message
+            timestamp:
+                description: the timestamp when this state was read from the device. this is a unix-timestamp in seconds.
+                type: integer
+                timestamp: current
+            url:
+                description: the human readable url of the device
+                type: string
+                format: usnUrl
+                example: bike@myCompany
+            signature:
+                description: Signature based on the above values. If signed and user has access to the device, the response may include additional values, like the location.
+                $ref: "#/definitions/Signature"

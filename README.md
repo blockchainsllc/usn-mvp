@@ -1,26 +1,95 @@
-# Slock.it MVP user validation program
-Welcome to our program, it is a pleasure to see you here. 
 
-We work to enable new sharing experiences and provide you with a glimpse of how blockchain technology can power new ideas.
+## ENS
 
-Because the app is still in the alpha stage, some things might still be puzzling or seem unpolished. We would love to get your feedback on your experiences. Reach us via slack or just create an issue here on our Github.
+* `class` [USNResolver](https://github.com/slockit/usn-lib/blob/develop/contracts/ENS/README.md#class-usnresolver)    
+    the main regstry for all contracts based on the USN-Names    
+    
+* `class` [USNResolvable](https://github.com/slockit/usn-lib/blob/develop/contracts/ENS/README.md#class-usnresolvable)    
+* `class` [USNRegistrar](https://github.com/slockit/usn-lib/blob/develop/contracts/ENS/README.md#class-usnregistrar)    
+    this contract may be used to register new names for the usn-domain.    
+    
+* `class` [ENSOwner](https://github.com/slockit/usn-lib/blob/develop/contracts/ENS/README.md#class-ensowner)    
+    interface used to check for the owner of given ENS-Nodeid    
+    
+* `class` [ENSImpl](https://github.com/slockit/usn-lib/blob/develop/contracts/ENS/README.md#class-ensimpl)    
+* `interface` [AbstractENS](https://github.com/slockit/usn-lib/blob/develop/contracts/ENS/README.md#interface-abstractens)    
 
-## Slock.it - the Smart Sharing Network
-In the rise of mobile and tablet controlled objects like smart houses and drones, it sounds sensible to create a smart platform in which people can profit from the shared access to those assets. That is Slock.it
+## interfaces
 
-The Slock.it mechanism represents IoT devices as physical assets, with a set of smart contracts. The Slock.it App onboards this mechanism and brings its potential to the public. It allows providers and users to rent or share anything that can be locked or controlled via mobile phones.
+* `interface` [ERC20](https://github.com/slockit/usn-lib/blob/develop/contracts/interfaces/README.md#interface-erc20)    
+* `interface` [EIP165](https://github.com/slockit/usn-lib/blob/develop/contracts/interfaces/README.md#interface-eip165)    
+* `class` [Owned](https://github.com/slockit/usn-lib/blob/develop/contracts/interfaces/README.md#class-owned)    
 
-Slock.it is universal as it is public - anyone can share assets and extend its functionalities. Jump into the [Github repository](https://github.com/Trusted-IoT-Alliance/usn) for more detailed information. 
+## features
 
-## Slock.it Pi
-Decentralization is one of most fundamental changes that internet technologies are facing at the moment. It minimizes the impact of cyber attacks and engages the users in making important decisions as a democratic principle.
+* `interface` [WhitelistSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-whitelistsupport)    
+    Defines additional access for certain users, (like the cleaning lady in an appartment)    
+    
+* `interface` [WeekCalendarSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-weekcalendarsupport)    
+    supports controlling acces by setting opening times per weekday    
+    
+* `interface` [VerifiedDeviceSupportPerDeviceImpl](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-verifieddevicesupportperdeviceimpl)    
+    supports for signing messages by the device with one signature per device.    
+    
+* `interface` [VerifiedDeviceSupportPerContractImpl](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-verifieddevicesupportpercontractimpl)    
+    the Implementation for a whitelist for all devices in this contract.    
+    
+* `interface` [VerifiedDeviceSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-verifieddevicesupport)    
+    supports for signing messages by the device.    
+    
+* `interface` [TokenSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-tokensupport)    
+    supports exchanges between different tokens    
+    
+* `interface` [TimeRangeSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-timerangesupport)    
+    supports checks for a minimum and maximum time to rent    
+    
+* `interface` [StateChannelSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-statechannelsupport)    
+    support  StateChannels    
+    
+* `interface` [RentingSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-rentingsupport)    
+    defines a contract able to rent and return    
+    
+* `interface` [RentForSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-rentforsupport)    
+    renting from a different account then the controller    
+    
+* `interface` [RemoteFeatureSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-remotefeaturesupport)    
+    support controlling acces for only identifieable users, which can be based on keybase or other whitleists    
+    
+* `interface` [RemoteFeatureProvider](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-remotefeatureprovider)    
+    interface for a remote feature-contract    
+    
+* `interface` [OwnerSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-ownersupport)    
+    defines a owner for a device    
+    
+* `interface` [OffChainSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-offchainsupport)    
+    defines Rules, which can be verified, even if the state is held on chain.    
+    
+* `class` [MultisigSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#class-multisigsupport)    
+    support mutlisigs as controller of a device. In this case all keyholders have access when rented.    
+    
+* `interface` [MetaSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-metasupport)    
+    returns metadata for a device    
+    
+* `interface` [IdentitySupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-identitysupport)    
+    support controlling acces for only identifieable users, which can be based on keybase or other whitleists    
+    
+* `interface` [GroupedSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-groupedsupport)    
+* `interface` [DiscountSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-discountsupport)    
+    support controlling acces for only identifieable users, which can be based on keybase or other whitleists    
+    
+* `interface` [DepositSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-depositsupport)    
+    supports saving a deposit and returning it afterwards    
+    
+* `interface` [DependendAccessSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-dependendaccesssupport)    
+    supports acces control for depending devices.    
+    
+* `interface` [BlackListSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-blacklistsupport)    
+    defines a blacklist for users to be rejected    
+    
+* `interface` [AccessSupport](https://github.com/slockit/usn-lib/blob/develop/contracts/features/README.md#interface-accesssupport)    
+    control the access for a device.    
+    
 
-By mixing the comfort of home automation platforms, the low cost of the raspberry pi and, the decentralization of blockchain, the Slock.it Pi delivers a cutting-edge bridge to the IoT.
+## impl
 
-Get some hands-on by following our [Slock.it Pi guide](https://github.com/slockit/usn-mvp/wiki).
-
-## [Learn more](https://github.com/slockit/usn-mvp/wiki)
-The wiki exists to guide you through the concepts of our technology, how to use it and what to do in unexpected situations.
-
-## [Become a tester](https://docs.google.com/forms/d/e/1FAIpQLScnsMrduVaImF1g9nRMkTnkO4svTbVKY_a-6FV71bdTF_0_UQ/viewform)
-If you are still not part of this, don't waste time, answer to the [alpha tester survey](https://docs.google.com/forms/d/e/1FAIpQLScnsMrduVaImF1g9nRMkTnkO4svTbVKY_a-6FV71bdTF_0_UQ/viewform), we will reach out.
+* `class` [AccessOnly](https://github.com/slockit/usn-lib/blob/develop/contracts/impl/README.md#class-accessonly)    
